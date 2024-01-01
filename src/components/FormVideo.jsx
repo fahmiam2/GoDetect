@@ -1,23 +1,20 @@
 import { useRef, useState } from "react";
-import OutputImage from "./OutputImage";
-import OutputText from "./OutputText";
-import SpinnerLoading from "./Spinner";
 import FileUploadArea from "./FileUploadArea";
+import TaskForm from "./TaskFormVideo";
 import UploadedFile from "./UploadedFile";
-import TaskForm from "./TaskFormImage";
+import SpinnerLoading from "./Spinner";
+import OutputVideo from "./OutputVideo";
 import { motion } from "framer-motion";
 
-const BASE_ENDPOINT_API = "http://localhost:8000/detect/image";
+const BASE_ENDPOINT_API = "http://localhost:8000/detect/video";
+const allowedVideoTypes = ["video/mp4", "video/quicktime"];
 
-const allowedImageTypes = ["image/png", "image/jpeg", "image/jpg"];
-
-export default function FormImage() {
+export default function FormVideo() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const fileInputRef = useRef(null);
   const [isUploaded, setIsUploaded] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
-  const [imageData, setImageData] = useState(null);
-  const [objectCounts, setObjectCounts] = useState({});
+  const [videoData, setVideoData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const onDrop = (acceptedFiles) => {
@@ -25,14 +22,14 @@ export default function FormImage() {
     setIsUploaded(true);
   };
 
+  const replaceFile = () => {
+    fileInputRef.current.click();
+  };
+
   const resetForm = () => {
     setUploadedFiles([]);
     setIsUploaded(false);
     setShowOutput(false);
-  };
-
-  const replaceFile = () => {
-    fileInputRef.current.click();
   };
 
   const handleFileChange = (e) => {
@@ -43,16 +40,29 @@ export default function FormImage() {
       setShowOutput(false);
     }
   };
-
+  // setelah submit processing video dan proses POST
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
       const formData = new FormData();
-      formData.append("image", uploadedFiles[0]);
+      let use_tracer;
+      formData.append("video", uploadedFiles[0]);
 
       const queryParams = new URLSearchParams();
       queryParams.append("task_type", data.taskType);
       queryParams.append("confidential_threshold", data.confidentialThreshold);
+      queryParams.append("annotator", data.chooseAnnotator);
+
+      if (data.chooseTracer !== "none") {
+        use_tracer = true;
+        queryParams.append("use_tracer", use_tracer);
+        queryParams.append("tracer", data.chooseTracer);
+      } else {
+        use_tracer = false;
+        queryParams.append("use_tracer", use_tracer);
+      }
+
+      console.log(queryParams);
 
       const url = `${BASE_ENDPOINT_API}?${queryParams.toString()}`;
 
@@ -64,8 +74,7 @@ export default function FormImage() {
       if (response.ok) {
         const result = await response.json();
         console.log("API Response:", result);
-        setImageData(result.frame);
-        setObjectCounts(result.object_counts);
+        setVideoData(result.url_video);
         setShowOutput(true);
       } else {
         console.error("API Error:", response.statusText);
@@ -77,13 +86,14 @@ export default function FormImage() {
     }
   };
 
+  //   return <FileUploadArea onDrop={onDrop} />;
   return (
     <div>
       {!isUploaded ? (
         <FileUploadArea
           onDrop={onDrop}
           isUploaded={isUploaded}
-          allowedTypes={allowedImageTypes}
+          allowedTypes={allowedVideoTypes}
         />
       ) : (
         <motion.div
@@ -116,8 +126,7 @@ export default function FormImage() {
               <strong>Output:</strong>
             </p>
             <div className="my-4 flex flex-col items-center justify-center gap-4">
-              <OutputImage imageData={imageData} />
-              <OutputText>{JSON.stringify(objectCounts, null, 2)}</OutputText>
+              <OutputVideo src={videoData} />
             </div>
           </>
         )
