@@ -10,24 +10,35 @@ import { NavLink } from "react-router-dom";
 
 export default function PageNav() {
   return (
-    <Navbar shouldHideOnScroll className="bg-teal-300">
+    <Navbar shouldHideOnScroll className="bg-indigo-500">
       <NavbarBrand>
-        <p className="font-bold text-inherit">GoDetect</p>
+        <p className="font-bold text-inherit text-xl text-white">GoDetect</p>
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="sm:flex gap-5" justify="center">
         <NavbarItem>
-          <NavLink to="/">Home</NavLink>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <NavLink to="/apis">APIs</NavLink>
+          <NavLink to="/" className="text-md font-medium text-white">
+            Home
+          </NavLink>
         </NavbarItem>
         <NavbarItem>
-          <NavLink to="/faqs">FAQs</NavLink>
+          <NavLink to="/apis" className="text-md font-medium text-white">
+            APIs
+          </NavLink>
+        </NavbarItem>
+        <NavbarItem>
+          <NavLink to="/faqs" className="text-md font-medium text-white">
+            FAQs
+          </NavLink>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button
+            as={Link}
+            className="bg-indigo-400 text-white"
+            href="#"
+            variant="flat"
+          >
             Support Me
           </Button>
         </NavbarItem>

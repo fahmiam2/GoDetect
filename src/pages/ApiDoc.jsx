@@ -7,7 +7,9 @@ export default function ApiDoc() {
     <div className="grid h-screen grid-rows-[auto_1fr_auto]">
       <PageNav />
 
-      <SwaggerUI />
+      <main className="container mx-auto ">
+        <SwaggerUI />
+      </main>
 
       <Footer />
     </div>

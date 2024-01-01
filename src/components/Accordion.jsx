@@ -57,7 +57,7 @@ const faqs = [
 
 export default function AccordionFaqs() {
   return (
-    <div className="justify-center items-center px-60 my-10 ">
+    <div className="container p-5 max-w-screen-md mx-auto">
       <Accordion variant="splitted" selectionMode="multiple">
         {faqs.map((faq, index) => (
           <AccordionItem

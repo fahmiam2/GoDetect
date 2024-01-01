@@ -1,11 +1,10 @@
 export default function SwaggerUI() {
   return (
-    <div className="flex justify-center items-center">
+    <div className="container">
       <iframe
-        title="Streamlit App"
+        title="Swagger UI"
         src="http://localhost:8000/docs"
-        width="1300"
-        height="1080"
+        className=" mx-auto w-full h-screen"
       ></iframe>
     </div>
   );
