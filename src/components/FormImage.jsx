@@ -7,7 +7,8 @@ import UploadedFile from "./UploadedFile";
 import TaskForm from "./TaskFormImage";
 import { motion } from "framer-motion";
 
-const BASE_ENDPOINT_API = "http://localhost:8000/detect/image";
+const BASE_ENDPOINT_API =
+  "https://object-detection-fastapi-service-te6saypwdq-as.a.run.app/detect/image";
 
 const allowedImageTypes = ["image/png", "image/jpeg", "image/jpg"];
 
@@ -87,7 +88,7 @@ export default function FormImage() {
         />
       ) : (
         <motion.div
-          className="my-10 px-20 mx-10"
+          className="mx-10 my-10 px-20"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{
             opacity: isUploaded ? 1 : 0,
@@ -112,7 +113,7 @@ export default function FormImage() {
       ) : (
         showOutput && (
           <>
-            <p className="my-5 px-20 mx-10 text-lg">
+            <p className="mx-10 my-5 px-20 text-lg">
               <strong>Output:</strong>
             </p>
             <div className="my-4 flex flex-col items-center justify-center gap-4">

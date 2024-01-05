@@ -6,7 +6,8 @@ import SpinnerLoading from "./Spinner";
 import OutputVideo from "./OutputVideo";
 import { motion } from "framer-motion";
 
-const BASE_ENDPOINT_API = "http://localhost:8000/detect/video";
+const BASE_ENDPOINT_API =
+  "https://object-detection-fastapi-service-te6saypwdq-as.a.run.app/detect/video";
 const allowedVideoTypes = ["video/mp4", "video/quicktime"];
 
 export default function FormVideo() {
@@ -97,7 +98,7 @@ export default function FormVideo() {
         />
       ) : (
         <motion.div
-          className="my-10 px-20 mx-10"
+          className="mx-10 my-10 px-20"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{
             opacity: isUploaded ? 1 : 0,
@@ -122,7 +123,7 @@ export default function FormVideo() {
       ) : (
         showOutput && (
           <>
-            <p className="my-5 px-20 mx-10 text-lg">
+            <p className="mx-10 my-5 px-20 text-lg">
               <strong>Output:</strong>
             </p>
             <div className="my-4 flex flex-col items-center justify-center gap-4">
