@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import MessageError from "./ErrorMessage";
 
 const BASE_ENDPOINT_API =
-  "http://object-detection-fastapi-service-te6saypwdq-as.a.run.app/detect/video";
+  "https://object-detection-fastapi-service-te6saypwdq-as.a.run.app/detect/video";
 const allowedVideoTypes = ["video/mp4", "video/quicktime"];
 
 export default function FormVideo() {
