@@ -12,9 +12,9 @@ export default function PageNav() {
   return (
     <Navbar shouldHideOnScroll className="bg-indigo-500">
       <NavbarBrand>
-        <p className="font-bold text-inherit text-xl text-white">GoDetect</p>
+        <p className="text-xl font-bold text-inherit text-white">GoDetect</p>
       </NavbarBrand>
-      <NavbarContent className="sm:flex gap-5" justify="center">
+      <NavbarContent className="gap-5 sm:flex" justify="center">
         <NavbarItem>
           <NavLink to="/" className="text-md font-medium text-white">
             Home
@@ -35,7 +35,7 @@ export default function PageNav() {
         <NavbarItem>
           <Button
             as={Link}
-            className="bg-indigo-400 text-white"
+            className="bg-pictonBlue text-white"
             href="#"
             variant="flat"
           >

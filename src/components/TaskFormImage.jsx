@@ -4,7 +4,7 @@ export default function TaskForm({ onSubmit }) {
   const { handleSubmit, control } = useForm();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
-      <div className="flex flex-col md:flex-row justify-between mt-5 mb-4 space-y-4 md:space-y-0 md:space-x-4">
+      <div className="mb-4 mt-5 flex flex-col justify-between space-y-4 md:flex-row md:space-x-4 md:space-y-0">
         <div className="mb-4 md:mb-0 md:w-1/2">
           <label htmlFor="taskType">Task Type:</label>
           <Controller
@@ -12,7 +12,7 @@ export default function TaskForm({ onSubmit }) {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <select {...field} className="p-2 border w-full" required>
+              <select {...field} className="w-full border p-2" required>
                 <option value="">Select Task Type</option>
                 <option value="detection">Detection</option>
                 <option value="segmentation">Segmentation</option>
@@ -30,7 +30,7 @@ export default function TaskForm({ onSubmit }) {
               <input
                 {...field}
                 type="number"
-                className="p-2 border w-full"
+                className="w-full border p-2"
                 min={25}
                 max={100}
                 required
@@ -43,7 +43,7 @@ export default function TaskForm({ onSubmit }) {
       <div>
         <button
           type="submit"
-          className="bg-indigo-800 text-white px-4 py-2 rounded-lg"
+          className="rounded-lg bg-indigo-500 px-4 py-2 text-white transition duration-300 ease-in-out hover:bg-pictonBlue"
         >
           Submit
         </button>

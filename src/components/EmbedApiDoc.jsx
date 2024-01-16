@@ -3,8 +3,8 @@ export default function SwaggerUI() {
     <div className="container">
       <iframe
         title="Swagger UI"
-        src="http://localhost:8000/docs"
-        className=" mx-auto w-full h-screen"
+        src="https://object-detection-fastapi-service-te6saypwdq-as.a.run.app/docs"
+        className="mx-auto h-screen w-full"
       ></iframe>
     </div>
   );

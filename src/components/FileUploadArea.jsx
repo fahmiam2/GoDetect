@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { motion } from "framer-motion";
 
 export default function FileUploadArea({ onDrop, isUploaded, allowedTypes }) {
+  const [errorMessage, setErrorMessage] = useState("");
+  const MAX_FILE_SIZE_MB = 15;
+
   const fileSubtypes = allowedTypes.map((type) => {
     const parts = type.split("/");
     return parts.length === 2 ? parts[1] : null;
@@ -10,17 +14,38 @@ export default function FileUploadArea({ onDrop, isUploaded, allowedTypes }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {
       const disallowedFiles = acceptedFiles.filter(
-        (file) => !allowedTypes.includes(file.type),
+        (file) =>
+          !allowedTypes.includes(file.type) ||
+          file.size > MAX_FILE_SIZE_MB * 1024 * 1024,
       );
 
       if (disallowedFiles.length === 0) {
         onDrop(acceptedFiles);
       } else {
-        console.error(
-          `The following files are not allowed: ${disallowedFiles
-            .map((file) => file.name)
-            .join(", ")}`,
-        );
+        const disallowedFileNames = disallowedFiles.map((file) => file.name);
+        const sizeExceededFiles = disallowedFiles
+          .filter((file) => file.size > MAX_FILE_SIZE_MB * 1024 * 1024)
+          .map((file) => file.name);
+
+        if (disallowedFileNames.length > 0) {
+          setErrorMessage(
+            `The following files are not allowed: ${disallowedFileNames.join(
+              ", ",
+            )}`,
+          );
+          console.error(errorMessage);
+        }
+
+        if (sizeExceededFiles.length > 0) {
+          setErrorMessage(
+            `File size exceeded for: ${sizeExceededFiles.join(", ")}`,
+          );
+          console.error(errorMessage);
+        }
+
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 5000);
       }
     },
   });
@@ -28,7 +53,7 @@ export default function FileUploadArea({ onDrop, isUploaded, allowedTypes }) {
   return (
     <motion.div
       {...getRootProps()}
-      className={`border-dashed border-2 border-indigo-400 p-10 m-20 flex flex-col items-center justify-center rounded-xl transition-opacity ${
+      className={`m-10 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-indigo-400 p-10 transition-opacity sm:m-20 ${
         isDragActive ? "bg-indigo-200" : "bg-slate-100"
       }`}
       initial={{ opacity: 1, visibility: "visible" }}
@@ -45,7 +70,7 @@ export default function FileUploadArea({ onDrop, isUploaded, allowedTypes }) {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6 mb-3 text-gray-400"
+        className="mb-3 h-6 w-6 text-gray-400"
       >
         <path
           strokeLinecap="round"
@@ -54,16 +79,20 @@ export default function FileUploadArea({ onDrop, isUploaded, allowedTypes }) {
         />
       </svg>
 
-      <p className="text-gray-600 text-center my-3">
+      <p className="my-3 text-center text-gray-600">
         Drag and drop files here, or{" "}
         <span className="text-indigo-500">browse files</span>
       </p>
-      <span className="text-gray-400 text-center">
+      <span className="text-center text-gray-400">
         Only supported {fileSubtypes.join(", ")} file formats
       </span>
-      <span className="text-gray-400 text-center">
+      <span className="text-center text-gray-400">
         Maximum upload size 15 MB
       </span>
+
+      {errorMessage && (
+        <div className="my-3 text-center text-red-500">{errorMessage}</div>
+      )}
     </motion.div>
   );
 }

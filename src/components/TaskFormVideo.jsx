@@ -12,7 +12,7 @@ export default function TaskForm({ onSubmit }) {
           control={control}
           defaultValue="detection"
           render={({ field }) => (
-            <select {...field} className="p-2 border w-full" required>
+            <select {...field} className="w-full border p-2" required>
               <option value="">Select Task Type</option>
               <option value="detection">Detection</option>
               <option value="segmentation">Segmentation</option>
@@ -31,7 +31,7 @@ export default function TaskForm({ onSubmit }) {
             <input
               {...field}
               type="number"
-              className="p-2 border w-full"
+              className="w-full border p-2"
               min={25}
               max={100}
               required
@@ -47,7 +47,7 @@ export default function TaskForm({ onSubmit }) {
           control={control}
           defaultValue="bounding_box"
           render={({ field }) => (
-            <select {...field} className="p-2 border w-full" required>
+            <select {...field} className="w-full border p-2" required>
               <option value="">Select Annotator</option>
               <option value="bounding_box">Bounding Box</option>
               <option value="box_corner">Box Corner</option>
@@ -70,7 +70,7 @@ export default function TaskForm({ onSubmit }) {
           control={control}
           defaultValue="none"
           render={({ field }) => (
-            <select {...field} className="p-2 border w-full" required>
+            <select {...field} className="w-full border p-2" required>
               <option value="">Select Tracer</option>
               <option value="none">None</option>
               <option value="tracer">Tracer</option>
@@ -83,7 +83,7 @@ export default function TaskForm({ onSubmit }) {
       <div>
         <button
           type="submit"
-          className="bg-indigo-800 text-white px-4 py-2 rounded-lg"
+          className="rounded-lg bg-indigo-500 px-4 py-2 text-white transition duration-300 ease-in-out hover:bg-pictonBlue"
         >
           Submit
         </button>

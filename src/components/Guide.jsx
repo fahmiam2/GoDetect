@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody } from "@nextui-org/react";
 import { motion } from "framer-motion";
 
@@ -23,46 +23,42 @@ const steps = [
 export default function Guide() {
   const [isAfter, setIsAfter] = useState(false);
 
-  const toggleImage = () => {
-    setIsAfter(!isAfter);
-  };
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsAfter((prevIsAfter) => !prevIsAfter);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
-    <section className="container mx-auto mb-10 bg-pictonBlue rounded-xl">
-      <h2 className="text-3xl font-bold my-10 text-center text-white">
+    <section className="container mx-auto mb-10 rounded-xl bg-pictonBlue">
+      <h2 className="my-10 text-center text-3xl font-bold text-white">
         How to use GoDetect Effortlessly?
       </h2>
-      <div className="flex flex-col xl:flex-row px-5 xl:px-20 mb-20 mx-5 xl:mx-20 gap-10">
-        <div className="w-full xl:w-1/2 flex items-center justify-center relative mb-5 xl:mb-0">
+      <div className="mx-5 mb-20 flex flex-col gap-10 px-5 xl:mx-20 xl:flex-row xl:px-20">
+        <div className="relative mb-5 flex w-full items-center justify-center xl:mb-0 xl:w-1/2">
           {/* Before Image */}
           <motion.img
-            src="/public/sample-image.jpg"
+            src="/sample-image.jpg"
             className="min-h-unit-7xl max-w-full"
             alt="Before"
             initial={{ width: isAfter ? "0%" : "50%" }}
             animate={{ width: isAfter ? "0%" : "100%" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1 }}
           />
 
           {/* After Image */}
           <motion.img
-            src="/public/sample-annotated-image.jpg"
+            src="/sample-annotated-image.jpg"
             className="min-h-unit-7xl max-w-full"
             alt="After"
             initial={{ width: isAfter ? "50%" : "0%" }}
             animate={{ width: isAfter ? "100%" : "0%" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1 }}
           />
-
-          {/* Button to Toggle Image */}
-          <button
-            onClick={toggleImage}
-            className="bg-indigo-800 text-white px-4 py-2 rounded-lg absolute bottom-0 left-0"
-          >
-            Show Sample
-          </button>
         </div>
-        <div className="w-full xl:w-1/2 flex flex-col gap-10">
+        <div className="flex w-full flex-col gap-10 xl:w-1/2">
           {/* Right Side Cards */}
           {steps.map((step, index) => (
             <Card key={index} className="flex-1 p-4">

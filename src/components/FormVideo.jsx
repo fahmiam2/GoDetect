@@ -5,8 +5,10 @@ import UploadedFile from "./UploadedFile";
 import SpinnerLoading from "./Spinner";
 import OutputVideo from "./OutputVideo";
 import { motion } from "framer-motion";
+import MessageError from "./ErrorMessage";
 
-const BASE_ENDPOINT_API = "http://localhost:8000/detect/video";
+const BASE_ENDPOINT_API =
+  "http://object-detection-fastapi-service-te6saypwdq-as.a.run.app/detect/video";
 const allowedVideoTypes = ["video/mp4", "video/quicktime"];
 
 export default function FormVideo() {
@@ -16,6 +18,8 @@ export default function FormVideo() {
   const [showOutput, setShowOutput] = useState(false);
   const [videoData, setVideoData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorOutput, setErrorOutput] = useState(false);
+  const [messageError, setMessageError] = useState("");
 
   const onDrop = (acceptedFiles) => {
     setUploadedFiles(acceptedFiles);
@@ -78,6 +82,8 @@ export default function FormVideo() {
         setShowOutput(true);
       } else {
         console.error("API Error:", response.statusText);
+        setErrorOutput(true);
+        setMessageError("Oops, there was something wrong! Please try again...");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -97,7 +103,7 @@ export default function FormVideo() {
         />
       ) : (
         <motion.div
-          className="my-10 px-20 mx-10"
+          className="mx-0 mb-5 mt-10 px-10 sm:mx-10 sm:px-20"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{
             opacity: isUploaded ? 1 : 0,
@@ -116,20 +122,28 @@ export default function FormVideo() {
         </motion.div>
       )}
       {isLoading ? (
-        <div className="my-4 flex flex-col items-center justify-center gap-4">
+        <div className="mb-4 mt-2 flex flex-col items-center justify-center gap-4">
           <SpinnerLoading />
         </div>
       ) : (
-        showOutput && (
-          <>
-            <p className="my-5 px-20 mx-10 text-lg">
-              <strong>Output:</strong>
-            </p>
-            <div className="my-4 flex flex-col items-center justify-center gap-4">
-              <OutputVideo src={videoData} />
+        <>
+          {showOutput && (
+            <>
+              <p className="mx-0 mb-5 mt-10 px-10 text-large sm:mx-10 sm:px-20">
+                <strong>Output:</strong>
+              </p>
+              <div className="my-4 flex flex-col items-center justify-center gap-4">
+                <OutputVideo src={videoData} />
+              </div>
+            </>
+          )}
+
+          {errorOutput && (
+            <div className="mx-0 mb-5 mt-10 px-10 sm:mx-10 sm:px-20">
+              <MessageError message={messageError} />
             </div>
-          </>
-        )
+          )}
+        </>
       )}
     </div>
   );

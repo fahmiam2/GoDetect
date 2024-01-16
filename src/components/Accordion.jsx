@@ -12,6 +12,11 @@ const faqs = [
       "GoDetect supports various file formats, including JPEG, PNG, and MP4. Ensure that your files adhere to the supported formats for optimal processing.",
   },
   {
+    question: "What is the maximum file size that GoDetect can process?",
+    answer:
+      "To ensure optimal performance, GoDetect currently has 15 MB as a maximum file size limit for processing. Make sure your files adhere to this limit for efficient annotations.",
+  },
+  {
     question:
       "Can I share annotated images or videos on social media directly from GoDetect?",
     answer:
@@ -44,20 +49,15 @@ const faqs = [
       "Currently, GoDetect is a web-based application and does not have a dedicated mobile app. However, we are exploring options for mobile app version of GoDetect in future projects.",
   },
   {
-    question: "Is there a limit to the number of files I can upload at once?",
+    question: "Can GoDetect identify objects in webcam?",
     answer:
-      "GoDetect currently supports batch uploading. However, there may be limits on the total file size or number of files in a single batch. Refer to the user guide for specific details.",
-  },
-  {
-    question: "Is there a limit to the number of files I can upload at once?",
-    answer:
-      "GoDetect currently supports batch uploading. However, there may be limits on the total file size or number of files in a single batch. Refer to the user guide for specific details.",
+      "Currently, GoDetect does not have the capability to identify objects in real-time through a webcam. However, we are actively working on enhancing and expanding the features of GoDetect, and it is likely that in the future, we will introduce the ability to identify objects through webcams as part of our ongoing development efforts. Stay tuned for updates on our platform's features and capabilities.",
   },
 ];
 
 export default function AccordionFaqs() {
   return (
-    <div className="container p-5 max-w-screen-md mx-auto">
+    <div className="container mx-auto max-w-screen-md p-5">
       <Accordion variant="splitted" selectionMode="multiple">
         {faqs.map((faq, index) => (
           <AccordionItem
