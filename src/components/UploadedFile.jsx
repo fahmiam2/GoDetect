@@ -18,13 +18,13 @@ export default function UploadedFile({
             <div className="flex flex-row">
               <button
                 onClick={() => replaceFile()}
-                className="mr-2 rounded-lg border border-indigo-500 bg-transparent px-4 py-2 text-indigo-500"
+                className="mr-2 rounded-lg border border-indigo-500 bg-transparent px-4 py-2 text-indigo-500 transition duration-300 ease-in-out hover:bg-pictonBlue hover:text-white"
               >
                 Replace
               </button>
               <button
                 onClick={() => resetForm()}
-                className="rounded-lg bg-indigo-800 px-4 py-2 text-white transition-all duration-1000"
+                className="rounded-lg bg-indigo-500 px-4 py-2 text-white transition duration-300 ease-in-out hover:bg-pictonBlue"
               >
                 Remove
               </button>

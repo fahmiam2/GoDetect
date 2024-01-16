@@ -9,14 +9,14 @@ export default function Homepage() {
       <PageNav />
 
       <main className="container mx-auto my-10 p-4">
-        <div className="container max-w-screen-md mx-auto py-8">
-          <h1 className="text-4xl font-bold mb-4 text-center text-black">
+        <div className="container mx-auto max-w-screen-md py-8">
+          <h1 className="mb-4 text-center text-4xl font-bold text-black">
             GoDetect: Instant Visual Annotations
           </h1>
-          <p className="text-center text-gray-600 text-xl">
+          <p className="text-center text-xl text-gray-600">
             Upload your images or videos, and watch as GoDetect transforms them
             with automatic annotations. Effortless creativity at your fingertips
-            – <strong>Try it now!</strong>
+            – <strong className="text-indigo-500">Try it now!</strong>
           </p>
         </div>
         <FormLayout />

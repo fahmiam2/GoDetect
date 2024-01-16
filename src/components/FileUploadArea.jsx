@@ -53,7 +53,7 @@ export default function FileUploadArea({ onDrop, isUploaded, allowedTypes }) {
   return (
     <motion.div
       {...getRootProps()}
-      className={`m-20 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-indigo-400 p-10 transition-opacity ${
+      className={`m-10 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-indigo-400 p-10 transition-opacity sm:m-20 ${
         isDragActive ? "bg-indigo-200" : "bg-slate-100"
       }`}
       initial={{ opacity: 1, visibility: "visible" }}
@@ -81,7 +81,7 @@ export default function FileUploadArea({ onDrop, isUploaded, allowedTypes }) {
 
       <p className="my-3 text-center text-gray-600">
         Drag and drop files here, or{" "}
-        <span className="text-indigo-800">browse files</span>
+        <span className="text-indigo-500">browse files</span>
       </p>
       <span className="text-center text-gray-400">
         Only supported {fileSubtypes.join(", ")} file formats
