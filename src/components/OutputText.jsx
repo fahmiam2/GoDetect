@@ -1,5 +1,10 @@
-import { Snippet } from "@nextui-org/react";
-
-export default function OutputText({ children }) {
-  return <Snippet>{children}</Snippet>;
+export default function OutputText({ className, message }) {
+  return (
+    <textarea
+      readOnly
+      className={className}
+      placeholder="input your text"
+      value={message}
+    />
+  );
 }

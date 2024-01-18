@@ -5,7 +5,7 @@ import UploadedFile from "./UploadedFile";
 import SpinnerLoading from "./Spinner";
 import OutputVideo from "./OutputVideo";
 import { motion } from "framer-motion";
-import MessageError from "./ErrorMessage";
+import OutputText from "./OutputText";
 
 const BASE_ENDPOINT_API =
   "https://object-detection-fastapi-service-te6saypwdq-as.a.run.app/detect/video";
@@ -80,13 +80,24 @@ export default function FormVideo() {
         console.log("API Response:", result);
         setVideoData(result.url_video);
         setShowOutput(true);
+        setErrorOutput(false);
       } else {
-        console.error("API Error:", response.statusText);
+        const result = await response.json();
         setErrorOutput(true);
-        setMessageError("Oops, there was something wrong! Please try again...");
+        setShowOutput(false);
+        setMessageError(
+          `Oops, there was something wrong! Please try again...\n\nDetail Error:\n\n${JSON.stringify(
+            result,
+            null,
+            2,
+          )}`,
+        );
       }
     } catch (error) {
       console.error("Error:", error);
+      setErrorOutput(true);
+      setShowOutput(false);
+      setMessageError("Oops, there was something wrong! Please try again...");
     } finally {
       setIsLoading(false);
     }
@@ -134,13 +145,24 @@ export default function FormVideo() {
               </p>
               <div className="my-4 flex flex-col items-center justify-center gap-4">
                 <OutputVideo src={videoData} />
+                <OutputText
+                  className="focus:shadow-outline text-16 size-unit-80 w-full resize-none overflow-x-hidden rounded-xl border bg-gray-200 px-5 py-8 text-gray-500 focus:outline-none"
+                  message={`Response:\n\n${JSON.stringify(
+                    objectCounts,
+                    null,
+                    2,
+                  )}`}
+                />
               </div>
             </>
           )}
 
           {errorOutput && (
             <div className="mx-0 mb-5 mt-10 px-10 sm:mx-10 sm:px-20">
-              <MessageError message={messageError} />
+              <OutputText
+                className="focus:shadow-outline size-16 w-full resize-none items-center overflow-x-hidden rounded-xl border bg-gray-200 p-3 text-center text-gray-500 focus:outline-none"
+                message={messageError}
+              />
             </div>
           )}
         </>
