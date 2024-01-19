@@ -41,7 +41,7 @@ export default function Guide() {
           {/* Before Image */}
           <motion.img
             src="/sample-image.jpg"
-            className="min-h-unit-7xl max-w-full"
+            className="max-w-full"
             alt="Before"
             initial={{ width: isAfter ? "0%" : "50%" }}
             animate={{ width: isAfter ? "0%" : "100%" }}
@@ -51,7 +51,7 @@ export default function Guide() {
           {/* After Image */}
           <motion.img
             src="/sample-annotated-image.jpg"
-            className="min-h-unit-7xl max-w-full"
+            className="max-w-full"
             alt="After"
             initial={{ width: isAfter ? "50%" : "0%" }}
             animate={{ width: isAfter ? "100%" : "0%" }}
