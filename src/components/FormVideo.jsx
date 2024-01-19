@@ -145,14 +145,6 @@ export default function FormVideo() {
               </p>
               <div className="my-4 flex flex-col items-center justify-center gap-4">
                 <OutputVideo src={videoData} />
-                <OutputText
-                  className="focus:shadow-outline text-16 size-unit-80 w-full resize-none overflow-x-hidden rounded-xl border bg-gray-200 px-5 py-8 text-gray-500 focus:outline-none"
-                  message={`Response:\n\n${JSON.stringify(
-                    objectCounts,
-                    null,
-                    2,
-                  )}`}
-                />
               </div>
             </>
           )}
