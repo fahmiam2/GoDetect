@@ -36,7 +36,7 @@ export default function PageNav() {
           <Button
             as={Link}
             className="bg-pictonBlue text-white"
-            href="#"
+            href="https://www.buymeacoffee.com/fahmi_am2"
             variant="flat"
           >
             Support Me
