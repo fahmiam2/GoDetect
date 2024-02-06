@@ -12,7 +12,7 @@ export default function UploadedFile({
         {uploadedFiles.map((file) => (
           <li
             key={file.name}
-            className="mb-2 flex flex-col items-center justify-between gap-3 sm:flex-row sm:gap-0"
+            className="mb-2 flex flex-col items-center justify-between gap-3 md:flex-row md:gap-0"
           >
             <span className="font-bold text-indigo-500">{file.name}</span>
             <div className="flex flex-row">
