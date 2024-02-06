@@ -12,6 +12,7 @@ export default function Footer() {
             href="https://www.instagram.com/fahmi_am2"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Fahmiam's Instagram profile"
           >
             <IconInstagram />
           </a>
@@ -19,6 +20,7 @@ export default function Footer() {
             href="https://www.linkedin.com/in/fahmiam2/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Fahmiam's LinkedIn profile"
           >
             <IconLinkedin />
           </a>
@@ -26,6 +28,7 @@ export default function Footer() {
             href="https://github.com/fahmiam2"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Fahmiam's Github profile"
           >
             <IconGithub />
           </a>
