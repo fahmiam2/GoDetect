@@ -36,7 +36,7 @@ const faqs = [
     question:
       "How does GoDetect handle sensitive or private images and videos?",
     answer:
-      "GoDetect prioritizes user privacy and does not store sensitive or private files beyond the necessary processing time. Our commitment is to ensure the security and confidentiality of user data.",
+      "GoDetect prioritizes user privacy and does not store sensitive or private files beyond the necessary processing time. Our commitment is to ensure the security and confidenceity of user data.",
   },
   {
     question: "Can I integrate GoDetect into my own applications or services?",

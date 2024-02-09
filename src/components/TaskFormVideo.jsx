@@ -22,9 +22,9 @@ export default function TaskForm({ onSubmit }) {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="confidentialThreshold">Confidential Threshold:</label>
+        <label htmlFor="confidenceThreshold">Confidence Threshold:</label>
         <Controller
-          name="confidentialThreshold"
+          name="confidenceThreshold"
           control={control}
           defaultValue={25}
           render={({ field }) => (

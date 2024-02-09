@@ -11,7 +11,7 @@ const steps = [
   {
     title: "2. Configure Object Detection",
     content:
-      "Choose the Task Type (e.g., Detection or Segmentation) from the dropdown menu. Set the Confidential Threshold using the input field to determine the level of confidence required for object detection.",
+      "Choose the Task Type (e.g., Detection or Segmentation) from the dropdown menu. Set the Confidence Threshold using the input field to determine the level of confidence required for object detection.",
   },
   {
     title: "3. View Results",

@@ -55,7 +55,7 @@ export default function FormImage() {
 
       const queryParams = new URLSearchParams();
       queryParams.append("task_type", data.taskType);
-      queryParams.append("confidential_threshold", data.confidentialThreshold);
+      queryParams.append("confidence_threshold", data.confidenceThreshold);
 
       const url = `${BASE_ENDPOINT_API}?${queryParams.toString()}`;
 

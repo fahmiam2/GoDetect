@@ -54,7 +54,7 @@ export default function FormVideo() {
 
       const queryParams = new URLSearchParams();
       queryParams.append("task_type", data.taskType);
-      queryParams.append("confidential_threshold", data.confidentialThreshold);
+      queryParams.append("confidence_threshold", data.confidenceThreshold);
       queryParams.append("annotator", data.chooseAnnotator);
 
       if (data.chooseTracer !== "none") {
