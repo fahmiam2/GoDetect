@@ -54,6 +54,7 @@ export default function FormImage() {
       formData.append("image", uploadedFiles[0]);
 
       const queryParams = new URLSearchParams();
+      queryParams.append("model_type", data.modelType);
       queryParams.append("task_type", data.taskType);
       queryParams.append("confidence_threshold", data.confidenceThreshold);
 
